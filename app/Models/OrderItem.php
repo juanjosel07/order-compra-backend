@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 class OrderItem extends Model
 {
@@ -28,6 +29,8 @@ class OrderItem extends Model
 		'deleted_at',
 	];
 
+	protected $appends = ['product_name'];
+
 	//relationship
 	public function order()
 	{
@@ -38,4 +41,14 @@ class OrderItem extends Model
 	{
 		return $this->belongsTo(Product::class);
 	}
+
+	public function productName(): Attribute
+	{
+		return Attribute::make(
+			get: fn () => $this->product->name,
+		);
+	}
+
+
+
 }
