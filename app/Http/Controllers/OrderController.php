@@ -7,13 +7,15 @@ use App\Http\Requests\StoreOrderRequest;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Contracts\DataTable;
+use Yajra\DataTables\Facades\DataTables;
 
 class OrderController extends Controller
 {
 	public function index()
 	{
-		$orders = Order::orderBy('order_date', 'desc')->get();
-		return response()->json(['success' => true,'orders' => $orders],200);
+		$orders = Order::query();
+		return DataTables::of($orders)->toJson();
 	}
 
 	public function show( Request $request)
@@ -65,7 +67,7 @@ class OrderController extends Controller
 				$order->orderItems()->updateOrCreate(['id' => $orderItem['id']?? null], $orderItem);
 			}
 			DB::commit();
-            return response()->json(['status' => 'Orden Actualizada Correctamente'], 201);
+            return response()->json(['message' => 'Orden Actualizada Correctamente'], 201);
         } catch (\Throwable $e) {
             DB::rollback();
             return response()->json([
@@ -86,7 +88,7 @@ class OrderController extends Controller
         try {
 			$order->delete();
 			DB::commit();
-            return response()->json(['status' => 'Orden Eliminada Correctamente'], 201);
+            return response()->json(['message' => 'Orden Eliminada Correctamente'], 201);
         } catch (\Throwable $e) {
             DB::rollback();
             return response()->json([
