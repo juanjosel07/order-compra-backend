@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductoController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -25,4 +26,8 @@ Route::group(['prefix' => 'orders', 'controller' => OrderController::class], fun
 	Route::post('/', 'store');
 	Route::put('/{order}', 'update')->middleware('validate.order');
 	Route::delete('/{order}', 'destroy')->middleware('validate.order');
+});
+
+Route::group(['prefix' =>'products', 'controller' => ProductoController::class], function () {
+	Route::get('/', 'index');
 });
