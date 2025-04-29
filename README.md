@@ -66,10 +66,6 @@ Para ejecutar este proyecto, necesitas tener lo siguiente instalado:
     php artisan server
     ```
 
-markdown
-Copiar
-Editar
-
 ## 📡 Rutas de la API
 
 ### Rutas de Ordenes (`/api/orders`)
