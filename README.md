@@ -22,7 +22,7 @@ Para ejecutar este proyecto, necesitas tener lo siguiente instalado:
 1. **Clona el repositorio**:
 
     ```bash
-    git clone https://github.com/tu-usuario/modulo-orden-compras-backend.git
+    git clone git@github.com:juanjosel07/order-compra-backend.git
     ```
 
 2. **Instalar dependencias**:
