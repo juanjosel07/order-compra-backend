@@ -21,7 +21,8 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::group(['prefix' => 'orders', 'controller' => OrderController::class], function () {
-    Route::get('/', 'index');
+
+	Route::get('/', 'index');
 	Route::get('/{order}', 'show')->middleware('validate.order');
 	Route::post('/', 'store');
 	Route::put('/{order}', 'update')->middleware('validate.order');
